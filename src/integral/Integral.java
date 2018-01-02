@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Integral {
 
-    double integral2P(){
+    double integral2P() {
         List<Double> weightList = new ArrayList<>();
         weightList.add(1.0);
         weightList.add(1.0);
@@ -17,19 +17,19 @@ public class Integral {
         int coordinatesNumber = coordinatesList.size();
 
         double result = 0;
-        for(int i = 0; i < coordinatesNumber; i++){
-            for(int j = 0; j < coordinatesNumber; j++) {
-                result += function(coordinatesList.get(i), coordinatesList.get(j))*weightList.get(i)*weightList.get(j);
+        for (int i = 0; i < coordinatesNumber; i++) {
+            for (int j = 0; j < coordinatesNumber; j++) {
+                result += function(coordinatesList.get(i), coordinatesList.get(j)) * weightList.get(i) * weightList.get(j);
             }
         }
         return result;
     }
 
-    double integral3P(){
+    double integral3P() {
         List<Double> weightList = new ArrayList<>();
-        weightList.add(5.0/9.0);
-        weightList.add(8.0/9.0);
-        weightList.add(5.0/9.0);
+        weightList.add(5.0 / 9.0);
+        weightList.add(8.0 / 9.0);
+        weightList.add(5.0 / 9.0);
 
         List<Double> coordinatesList = new ArrayList<>();
         coordinatesList.add(-0.7745);
@@ -40,9 +40,9 @@ public class Integral {
 
         double result = 0;
 
-        for(int i = 0; i < coordinatesNumber; i++){
-            for(int j = 0; j < coordinatesNumber; j++) {
-                result += function(coordinatesList.get(i), coordinatesList.get(j))*weightList.get(i)*weightList.get(j);
+        for (int i = 0; i < coordinatesNumber; i++) {
+            for (int j = 0; j < coordinatesNumber; j++) {
+                result += function(coordinatesList.get(i), coordinatesList.get(j)) * weightList.get(i) * weightList.get(j);
             }
         }
 
@@ -50,6 +50,6 @@ public class Integral {
     }
 
     private double function(double x, double y) {
-        return (2*x*x*y*y+6*x+5);
+        return (2 * x * x * y * y + 6 * x + 5);
     }
 }
