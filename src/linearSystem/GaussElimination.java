@@ -4,7 +4,7 @@ import java.util.Vector;
 
 public class GaussElimination {
 
-    Vector<Double> gaussElimination(int size, double[][] matrix, Vector<Double> vector) {
+    public Vector<Double> gaussElimination(int size, double[][] matrix, Vector<Double> vector) {
         Vector<Double> resultVector = new Vector<>();
         resultVector.setSize(size);
 

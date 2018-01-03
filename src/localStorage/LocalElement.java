@@ -1,7 +1,5 @@
 package localStorage;
 
-import javafx.scene.transform.MatrixType;
-
 public class LocalElement {
 
     private static LocalElement localElement = null;
@@ -45,8 +43,8 @@ public class LocalElement {
             dNdEta[i][3] = getdN4dEta(gaussIntegrationPoints[i].getXi());
         }
 
-        for(int i=0;i<4;i++){
-            for(int j=0;j<2;j++){
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 2; j++) {
                 gaussIntegrationAreaPoints[i].node[j][0] = getN1(gaussIntegrationAreaPoints[i].localNode.get(j).getXi(), gaussIntegrationAreaPoints[i].localNode.get(j).getEta());
                 gaussIntegrationAreaPoints[i].node[j][1] = getN2(gaussIntegrationAreaPoints[i].localNode.get(j).getXi(), gaussIntegrationAreaPoints[i].localNode.get(j).getEta());
                 gaussIntegrationAreaPoints[i].node[j][2] = getN3(gaussIntegrationAreaPoints[i].localNode.get(j).getXi(), gaussIntegrationAreaPoints[i].localNode.get(j).getEta());
@@ -55,8 +53,8 @@ public class LocalElement {
         }
     }
 
-    public static LocalElement getInstance(){
-        if(localElement == null)
+    public static LocalElement getInstance() {
+        if (localElement == null)
             localElement = new LocalElement();
 
         return localElement;
@@ -97,12 +95,15 @@ public class LocalElement {
     private double getdN1dEta(double xi) {
         return -0.25 * (1 - xi);
     }
+
     private double getdN2dEta(double xi) {
         return -0.25 * (1 + xi);
     }
+
     private double getdN3dEta(double xi) {
         return 0.25 * (1 + xi);
     }
+
     private double getdN4dEta(double xi) {
         return 0.25 * (1 - xi);
     }

@@ -3,8 +3,8 @@ package localStorage;
 import java.util.Vector;
 
 public class LocalArea {
+    public final double node[][];
     final Vector<LocalNode> localNode;
-    final double node[][];
 
     LocalArea(LocalNode firstNode, LocalNode secondNode) {
         localNode = new Vector<>();
