@@ -1,6 +1,6 @@
 package fem;
 
-import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Vector;
 
 public class Element {
@@ -13,7 +13,7 @@ public class Element {
     private Vector<Integer> localPointsNumbers;//lokalne numery powierzchni kontatowych elementu
 
     //dh - wysokość, dw - szerokość -- jednego elementu
-    Element(int x, int y, Vector<Node> nodes) throws FileNotFoundException {
+    Element(int x, int y, Vector<Node> nodes) throws IOException {
 
         nodeVector = new Vector<>();
         areaVector = new Vector<>();

@@ -1,6 +1,6 @@
 package fem;
 
-import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Vector;
 
 public class Grid {
@@ -10,7 +10,7 @@ public class Grid {
     Vector<Element> elements;
     GlobalData globalData;
 
-    private Grid() throws FileNotFoundException {
+    private Grid() throws IOException {
         globalData = GlobalData.getInstance();
         nodes = new Vector<>();
         elements = new Vector<>();
@@ -38,7 +38,7 @@ public class Grid {
         }
     }
 
-    static Grid getInstance() throws FileNotFoundException {
+    static Grid getInstance() throws IOException {
         if (grid == null) {
             grid = new Grid();
         }

@@ -2,12 +2,12 @@ package fem;
 
 import linearSystem.GaussElimination;
 
-import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Vector;
 
 public class Main {
 
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) throws IOException {
         GlobalData globalData = GlobalData.getInstance();
         Grid grid = Grid.getInstance();
         Vector<Double> tempVector;

@@ -2,9 +2,11 @@ package fem;
 
 import localStorage.LocalElement;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.StreamTokenizer;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Vector;
 
 public class GlobalData {
@@ -29,34 +31,30 @@ public class GlobalData {
     private final Vector<Double> pGlobal;
     private double dTau; //poczatkowa wartosc przyrostu czasu
 
-    private GlobalData() throws FileNotFoundException {
+    private GlobalData() throws IOException {
 
-        Scanner input = new Scanner(new File("data.txt"));
-        input.hasNextDouble();
-        this.height = input.nextDouble();
-        input.findInLine(";");
-        this.width = input.nextDouble();
-        input.findInLine(";");
-        this.heightNodesNumber = input.nextInt();
-        input.findInLine(";");
-        this.widthNodesNumber = input.nextInt();
-        input.findInLine(";");
-        this.tempStart = input.nextDouble();
-        input.findInLine(";");
-        this.tau = input.nextDouble();
-        input.findInLine(";");
-        this.dTau = input.nextDouble();
-        input.findInLine(";");
-        this.tempEnvironment = input.nextDouble();
-        input.findInLine(";");
-        this.alfa = input.nextDouble();
-        input.findInLine(";");
-        this.c = input.nextDouble();
-        input.findInLine(";");
-        this.lambda = input.nextDouble();
-        input.findInLine(";");
-        this.rho = input.nextDouble();
-        input.close();
+        FileReader dataFile = new FileReader("data.txt");
+        StreamTokenizer reader = new StreamTokenizer(dataFile);
+        List<Double> fileList = new ArrayList<>();
+
+        int streamValue;
+        while ((streamValue = reader.nextToken()) != StreamTokenizer.TT_EOF) {
+            if (streamValue == StreamTokenizer.TT_NUMBER)
+                fileList.add(reader.nval);
+        }
+
+        this.height = fileList.get(0);
+        this.width = fileList.get(1);
+        this.heightNodesNumber = fileList.get(2).intValue();
+        this.widthNodesNumber = fileList.get(3).intValue();
+        this.tempStart = fileList.get(4);
+        this.tau = fileList.get(5);
+        this.dTau = fileList.get(6);
+        this.tempEnvironment = fileList.get(7);
+        this.alfa = fileList.get(8);
+        this.c = fileList.get(9);
+        this.lambda = fileList.get(10);
+        this.rho = fileList.get(11);
 
         nodesNumber = heightNodesNumber * widthNodesNumber;
         elementsNumber = (heightNodesNumber - 1) * (widthNodesNumber - 1);
@@ -69,7 +67,7 @@ public class GlobalData {
         pGlobal.setSize(nodesNumber);
     }
 
-    public static GlobalData getInstance() throws FileNotFoundException {
+    public static GlobalData getInstance() throws IOException {
         if (globalData == null) {
             globalData = new GlobalData();
         }
@@ -80,7 +78,7 @@ public class GlobalData {
         return globalData;
     }
 
-    void dataCompute() throws FileNotFoundException {
+    void dataCompute() throws IOException {
 
         for (int i = 0; i < nodesNumber; i++) {
             for (int j = 0; j < nodesNumber; j++) {

@@ -1,6 +1,6 @@
 package fem;
 
-import java.io.FileNotFoundException;
+import java.io.IOException;
 
 public class Node {
 
@@ -9,7 +9,7 @@ public class Node {
     private final GlobalData globalData;
     private double temp;
 
-    Node(double x, double y) throws FileNotFoundException {
+    Node(double x, double y) throws IOException {
         globalData = GlobalData.getInstance();
 
         this.x = x;

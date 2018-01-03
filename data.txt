@@ -1,5 +1,5 @@
-0,1	H		wysokosc przekroju, m;
-0,1	B		szerokosc przekroju, m;
+0.1	H		wysokosc przekroju, m;
+0.1	B		szerokosc przekroju, m;
 5	nH		liczba wezlow po wysokosci;
 5	nB		liczba wezlow po szerokosci;
 100	t_begin		temperatura poczatkowa, C;
