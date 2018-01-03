@@ -41,7 +41,7 @@ class Element {
         areaContactNumber = 0;
         localPointsNumbers = new Vector<>();
         for (int i = 0; i < 4; i++) {
-            if (areaVector.get(i).getNodes().get(0).getStatus() == 1 && areaVector.get(i).getNodes().get(1).getStatus() == 1){
+            if (areaVector.get(i).getNodes().get(0).getStatus() == 1 && areaVector.get(i).getNodes().get(1).getStatus() == 1) {
                 areaContactNumber++;
                 localPointsNumbers.add(i);
             }

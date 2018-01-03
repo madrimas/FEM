@@ -60,11 +60,18 @@ public class GlobalData {
         elementsNumber = (heightNodesNumber - 1) * (widthNodesNumber - 1);
 
         localElement = LocalElement.getInstance();
-        localH = new double[4][4];
-        localP = new Vector<>();
-        globalH = new double[nodesNumber][nodesNumber];
-        globalP = new Vector<>();
+        localH = new double[4][4]; //lokalna macierz współczynników układów równań
+        localP = new Vector<>();//lokalny wektor prawej części układu równań
+        globalH = new double[nodesNumber][nodesNumber];//globalna macierz współczynników układów równań
+        globalP = new Vector<>();//globalny wektor prawej części układu równań
         globalP.setSize(nodesNumber);
+    }
+
+    public static GlobalData getInstance() throws IOException {
+        if (globalData == null) {
+            globalData = new GlobalData();
+        }
+        return globalData;
     }
 
     public void dataCompute() throws IOException {
@@ -169,13 +176,6 @@ public class GlobalData {
                 globalP.set(grid.elements.get(elementNumber).globalNodeID.get(i), globalP.get(grid.elements.get(elementNumber).globalNodeID.get(i)) + localP.get(i));
             }
         }
-    }
-
-    public static GlobalData getInstance() throws IOException {
-        if (globalData == null) {
-            globalData = new GlobalData();
-        }
-        return globalData;
     }
 
     double getHeight() {

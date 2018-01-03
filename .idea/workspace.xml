@@ -2,14 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fba6c8f9-b731-46e6-b9c7-1db1102b7954" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/linearSystem/JacobiMethod.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/FEM/controller/ControllerFEM.class" afterPath="$PROJECT_DIR$/out/production/FEM/controller/ControllerFEM.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/FEM/fem/Element.class" afterPath="$PROJECT_DIR$/out/production/FEM/fem/Element.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/FEM/fem/GlobalData.class" afterPath="$PROJECT_DIR$/out/production/FEM/fem/GlobalData.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/FEM/fem/Grid.class" afterPath="$PROJECT_DIR$/out/production/FEM/fem/Grid.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/controller/ControllerFEM.java" afterPath="$PROJECT_DIR$/src/controller/ControllerFEM.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/controller/ControllerLS.java" afterPath="$PROJECT_DIR$/src/controller/ControllerLS.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/fem/Element.java" afterPath="$PROJECT_DIR$/src/fem/Element.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/fem/GlobalData.java" afterPath="$PROJECT_DIR$/src/fem/GlobalData.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/fem/Grid.java" afterPath="$PROJECT_DIR$/src/fem/Grid.java" />
@@ -24,11 +18,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="data.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/data/data.txt">
+      <file leaf-file-name="Integral.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/integral/Integral.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="3" column="1" lean-forward="false" selection-start-line="3" selection-start-column="1" selection-end-line="3" selection-end-column="1" />
+            <state relative-caret-position="323">
+              <caret line="20" column="37" lean-forward="false" selection-start-line="20" selection-start-column="37" selection-end-line="20" selection-end-column="37" />
               <folding />
             </state>
           </provider>
@@ -37,12 +31,24 @@
       <file leaf-file-name="Element.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/fem/Element.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="311">
-              <caret line="40" column="30" lean-forward="false" selection-start-line="40" selection-start-column="30" selection-end-line="40" selection-end-column="30" />
+            <state relative-caret-position="288">
+              <caret line="39" column="0" lean-forward="false" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#2093#2094#0" expanded="true" />
-                <element signature="e#2134#2135#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Jacobian.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/fem/Jacobian.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="323">
+              <caret line="19" column="49" lean-forward="false" selection-start-line="19" selection-start-column="49" selection-end-line="19" selection-end-column="49" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#4002#4003#0" expanded="true" />
+                <element signature="e#4029#4030#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -51,24 +57,11 @@
       <file leaf-file-name="GlobalData.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/fem/GlobalData.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="469">
-              <caret line="220" column="36" lean-forward="false" selection-start-line="220" selection-start-column="36" selection-end-line="220" selection-end-column="36" />
+            <state relative-caret-position="338">
+              <caret line="130" column="32" lean-forward="false" selection-start-line="130" selection-start-column="32" selection-end-line="130" selection-end-column="32" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#8826#8827#0" expanded="true" />
-                <element signature="e#8857#8858#0" expanded="true" />
-                <element signature="e#9128#9129#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="out.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/data/out.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -76,8 +69,8 @@
       <file leaf-file-name="Grid.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/fem/Grid.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
-              <caret line="38" column="0" lean-forward="false" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
+            <state relative-caret-position="291">
+              <caret line="45" column="0" lean-forward="false" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -85,47 +78,52 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ControllerIntegral.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/controller/ControllerIntegral.java">
+      <file leaf-file-name="Node.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/fem/Node.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+            <state relative-caret-position="340">
+              <caret line="20" column="28" lean-forward="false" selection-start-line="20" selection-start-column="28" selection-end-line="20" selection-end-column="28" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Area.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/fem/Area.java">
+      <file leaf-file-name="GaussElimination.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/linearSystem/GaussElimination.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" column="37" lean-forward="true" selection-start-line="5" selection-start-column="37" selection-end-line="5" selection-end-column="37" />
-              <folding>
-                <element signature="e#274#275#0" expanded="true" />
-                <element signature="e#302#303#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ControllerLS.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/controller/ControllerLS.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-109">
-              <caret line="15" column="23" lean-forward="false" selection-start-line="15" selection-start-column="23" selection-end-line="15" selection-end-column="23" />
+            <state relative-caret-position="357">
+              <caret line="21" column="20" lean-forward="false" selection-start-line="21" selection-start-column="20" selection-end-line="21" selection-end-column="20" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ControllerFEM.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/controller/ControllerFEM.java">
+      <file leaf-file-name="LocalArea.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/localStorage/LocalArea.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="314">
-              <caret line="34" column="119" lean-forward="false" selection-start-line="34" selection-start-column="119" selection-end-line="34" selection-end-column="119" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="272">
+              <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LocalElement.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/localStorage/LocalElement.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="401">
+              <caret line="113" column="0" lean-forward="false" selection-start-line="113" selection-start-column="0" selection-end-line="113" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LocalNode.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/localStorage/LocalNode.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -142,6 +140,7 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>point</find>
+      <find>au</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -172,13 +171,13 @@
         <option value="$PROJECT_DIR$/src/fem/Jacobian.java" />
         <option value="$PROJECT_DIR$/src/localStorage/LocalElement.java" />
         <option value="$PROJECT_DIR$/src/localStorage/LocalNode.java" />
-        <option value="$PROJECT_DIR$/src/fem/Element.java" />
-        <option value="$PROJECT_DIR$/src/fem/Grid.java" />
-        <option value="$PROJECT_DIR$/src/fem/GlobalData.java" />
         <option value="$PROJECT_DIR$/src/controller/ControllerFEM.java" />
         <option value="$PROJECT_DIR$/data/data.txt" />
         <option value="$PROJECT_DIR$/src/linearSystem/JacobiMethod.java" />
         <option value="$PROJECT_DIR$/src/controller/ControllerLS.java" />
+        <option value="$PROJECT_DIR$/src/fem/Grid.java" />
+        <option value="$PROJECT_DIR$/src/fem/Element.java" />
+        <option value="$PROJECT_DIR$/src/fem/GlobalData.java" />
       </list>
     </option>
   </component>
@@ -530,12 +529,12 @@
       <updated>1514886552440</updated>
       <workItem from="1514886557886" duration="24425000" />
       <workItem from="1514989323289" duration="18055000" />
-      <workItem from="1515008277612" duration="8261000" />
+      <workItem from="1515008277612" duration="11254000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="50741000" />
+    <option name="totallyTimeSpent" value="53734000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -578,15 +577,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/fem/Grid.java</url>
-          <line>35</line>
-          <properties />
-          <option name="timeStamp" value="12" />
-        </line-breakpoint>
-      </breakpoints>
-      <option name="time" value="13" />
+      <option name="time" value="15" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -605,8 +596,6 @@
           <caret line="20" column="46" lean-forward="false" selection-start-line="20" selection-start-column="46" selection-end-line="20" selection-end-column="46" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2093#2094#0" expanded="true" />
-            <element signature="e#2134#2135#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -677,9 +666,6 @@
           <caret line="184" column="8" lean-forward="true" selection-start-line="184" selection-start-column="8" selection-end-line="184" selection-end-column="8" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#8826#8827#0" expanded="true" />
-            <element signature="e#8857#8858#0" expanded="true" />
-            <element signature="e#9128#9129#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -698,9 +684,6 @@
           <caret line="2" column="23" lean-forward="false" selection-start-line="2" selection-start-column="23" selection-end-line="2" selection-end-column="23" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#8826#8827#0" expanded="true" />
-            <element signature="e#8857#8858#0" expanded="true" />
-            <element signature="e#9128#9129#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -774,8 +757,6 @@
           <caret line="15" column="16" lean-forward="false" selection-start-line="15" selection-start-column="16" selection-end-line="15" selection-end-column="16" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2093#2094#0" expanded="true" />
-            <element signature="e#2134#2135#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -808,29 +789,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_121/src.zip!/java/util/Vector.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="444">
-          <caret line="749" column="0" lean-forward="false" selection-start-line="749" selection-start-column="0" selection-end-line="749" selection-end-column="0" />
-          <folding>
-            <element signature="e#27935#27936#0" expanded="false" />
-            <element signature="e#27980#27981#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_121/src.zip!/java/lang/Double.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="172">
-          <caret line="518" column="0" lean-forward="false" selection-start-line="518" selection-start-column="0" selection-end-line="518" selection-end-column="0" />
-          <folding>
-            <element signature="e#20970#20971#0" expanded="true" />
-            <element signature="e#27228#27229#0" expanded="true" />
-            <element signature="e#27256#27257#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/controller/ControllerFEM.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -842,114 +800,39 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller.java" />
-    <entry file="file://$PROJECT_DIR$/src/fem/Jacobian.java">
+    <entry file="file://$PROJECT_DIR$/src/linearSystem/JacobiMethod.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="17" column="29" lean-forward="true" selection-start-line="17" selection-start-column="29" selection-end-line="17" selection-end-column="29" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/fem/Node.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+        <state relative-caret-position="459">
+          <caret line="33" column="35" lean-forward="false" selection-start-line="33" selection-start-column="35" selection-end-line="33" selection-end-column="35" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/integral/Integral.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="7" column="11" lean-forward="false" selection-start-line="7" selection-start-column="11" selection-end-line="7" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/linearSystem/GaussElimination.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="19" column="9" lean-forward="false" selection-start-line="19" selection-start-column="9" selection-end-line="19" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/localStorage/LocalArea.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/localStorage/LocalElement.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="50" lean-forward="true" selection-start-line="21" selection-start-column="50" selection-end-line="21" selection-end-column="50" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/localStorage/LocalNode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="6" lean-forward="false" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/fem/Area.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="37" lean-forward="true" selection-start-line="5" selection-start-column="37" selection-end-line="5" selection-end-column="37" />
-          <folding>
-            <element signature="e#274#275#0" expanded="true" />
-            <element signature="e#302#303#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/fem/Element.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="311">
-          <caret line="40" column="30" lean-forward="false" selection-start-line="40" selection-start-column="30" selection-end-line="40" selection-end-column="30" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2093#2094#0" expanded="true" />
-            <element signature="e#2134#2135#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/fem/Grid.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="38" column="0" lean-forward="false" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/data/out.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
+        <state relative-caret-position="-422041">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/fem/GlobalData.java">
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_121/src.zip!/java/lang/Double.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="469">
-          <caret line="220" column="36" lean-forward="false" selection-start-line="220" selection-start-column="36" selection-end-line="220" selection-end-column="36" />
+        <state relative-caret-position="180">
+          <caret line="715" column="0" lean-forward="false" selection-start-line="715" selection-start-column="0" selection-end-line="715" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#8826#8827#0" expanded="true" />
-            <element signature="e#8857#8858#0" expanded="true" />
-            <element signature="e#9128#9129#0" expanded="true" />
+            <element signature="e#27256#27257#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_121/src.zip!/java/util/Vector.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="478">
+          <caret line="749" column="0" lean-forward="false" selection-start-line="749" selection-start-column="0" selection-end-line="749" selection-end-column="0" />
+          <folding>
+            <element signature="e#27935#27936#0" expanded="true" />
+            <element signature="e#27980#27981#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -959,6 +842,16 @@
         <state relative-caret-position="51">
           <caret line="3" column="1" lean-forward="false" selection-start-line="3" selection-start-column="1" selection-end-line="3" selection-end-column="1" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/ControllerFEM.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="38" column="33" lean-forward="false" selection-start-line="38" selection-start-column="16" selection-end-line="38" selection-end-column="33" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -972,27 +865,107 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/controller/ControllerLS.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-109">
+        <state relative-caret-position="146">
           <caret line="15" column="23" lean-forward="false" selection-start-line="15" selection-start-column="23" selection-end-line="15" selection-end-column="23" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/linearSystem/JacobiMethod.java">
+    <entry file="file://$PROJECT_DIR$/src/fem/Area.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="33" column="35" lean-forward="false" selection-start-line="33" selection-start-column="35" selection-end-line="33" selection-end-column="35" />
+        <state relative-caret-position="85">
+          <caret line="5" column="37" lean-forward="false" selection-start-line="5" selection-start-column="37" selection-end-line="5" selection-end-column="37" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/ControllerFEM.java">
+    <entry file="file://$PROJECT_DIR$/src/fem/Element.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="314">
-          <caret line="34" column="119" lean-forward="false" selection-start-line="34" selection-start-column="119" selection-end-line="34" selection-end-column="119" />
+        <state relative-caret-position="288">
+          <caret line="39" column="0" lean-forward="false" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/fem/GlobalData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="338">
+          <caret line="130" column="32" lean-forward="false" selection-start-line="130" selection-start-column="32" selection-end-line="130" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/fem/Grid.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="291">
+          <caret line="45" column="0" lean-forward="false" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/fem/Jacobian.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="49" lean-forward="false" selection-start-line="19" selection-start-column="49" selection-end-line="19" selection-end-column="49" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#4002#4003#0" expanded="true" />
+            <element signature="e#4029#4030#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/fem/Node.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="28" lean-forward="false" selection-start-line="20" selection-start-column="28" selection-end-line="20" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/integral/Integral.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="20" column="37" lean-forward="false" selection-start-line="20" selection-start-column="37" selection-end-line="20" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/localStorage/LocalArea.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/localStorage/LocalElement.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="401">
+          <caret line="113" column="0" lean-forward="false" selection-start-line="113" selection-start-column="0" selection-end-line="113" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/localStorage/LocalNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/linearSystem/GaussElimination.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="21" column="20" lean-forward="false" selection-start-line="21" selection-start-column="20" selection-end-line="21" selection-end-column="20" />
+          <folding />
         </state>
       </provider>
     </entry>

@@ -33,7 +33,6 @@ public class Grid {
                 tempNode.add(nodes.get(globalData.getHeightNodesNumber() * (i + 1) + (j + 1)));
                 tempNode.add(nodes.get(globalData.getHeightNodesNumber() * i + (j + 1)));
                 elements.add(new Element(i, j, tempNode));
-                int size = elements.size();
             }
         }
     }
