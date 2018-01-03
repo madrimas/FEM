@@ -25,15 +25,15 @@ public class GlobalData {
     private final double rho; //gestosc
 
     private final LocalElement localElement;
-    private final double[][] hLocal;
-    private final Vector<Double> pLocal;
-    private final double[][] hGlobal;
-    private final Vector<Double> pGlobal;
+    private final double[][] localH;
+    private final Vector<Double> localP;
+    private final double[][] globalH;
+    private final Vector<Double> globalP;
     private double dTau; //poczatkowa wartosc przyrostu czasu
 
     private GlobalData() throws IOException {
 
-        FileReader dataFile = new FileReader("data.txt");
+        FileReader dataFile = new FileReader("data/data.txt");
         StreamTokenizer reader = new StreamTokenizer(dataFile);
         List<Double> fileList = new ArrayList<>();
 
@@ -60,31 +60,20 @@ public class GlobalData {
         elementsNumber = (heightNodesNumber - 1) * (widthNodesNumber - 1);
 
         localElement = LocalElement.getInstance();
-        hLocal = new double[4][4];
-        pLocal = new Vector<>();
-        hGlobal = new double[nodesNumber][nodesNumber];
-        pGlobal = new Vector<>();
-        pGlobal.setSize(nodesNumber);
+        localH = new double[4][4];
+        localP = new Vector<>();
+        globalH = new double[nodesNumber][nodesNumber];
+        globalP = new Vector<>();
+        globalP.setSize(nodesNumber);
     }
 
-    public static GlobalData getInstance() throws IOException {
-        if (globalData == null) {
-            globalData = new GlobalData();
-        }
-        return globalData;
-    }
-
-    public static GlobalData getGlobalData() {
-        return globalData;
-    }
-
-    void dataCompute() throws IOException {
+    public void dataCompute() throws IOException {
 
         for (int i = 0; i < nodesNumber; i++) {
             for (int j = 0; j < nodesNumber; j++) {
-                hGlobal[i][j] = 0.0;
+                globalH[i][j] = 0.0;
             }
-            pGlobal.set(i, 0.0);
+            globalP.set(i, 0.0);
         }
 
         Grid grid = Grid.getInstance();
@@ -103,15 +92,15 @@ public class GlobalData {
         int id;
         double detJ = 0;
 
-        pLocal.setSize(4);
+        localP.setSize(4);
 
         for (int elementNumber = 0; elementNumber < elementsNumber; elementNumber++) {
 
             for (int i = 0; i < 4; i++) {
                 for (int j = 0; j < 4; j++) {
-                    hLocal[i][j] = 0;
+                    localH[i][j] = 0;
                 }
-                pLocal.set(i, 0.0);
+                localP.set(i, 0.0);
             }
 
             for (int i = 0; i < 4; i++) {
@@ -135,8 +124,8 @@ public class GlobalData {
                 for (int i = 0; i < 4; i++) {
                     for (int j = 0; j < 4; j++) {
                         cij = c * rho * localElement.getMatrixN()[integrationPoints][i] * localElement.getMatrixN()[integrationPoints][j] * detJ;
-                        hLocal[i][j] += lambda * (dNdX.get(i) * dNdX.get(j) + dNdY.get(i) * dNdY.get(j)) * detJ + cij / dTau;
-                        pLocal.set(i, pLocal.get(i) + cij / dTau * t0p);
+                        localH[i][j] += lambda * (dNdX.get(i) * dNdX.get(j) + dNdY.get(i) * dNdY.get(j)) * detJ + cij / dTau;
+                        localP.set(i, localP.get(i) + cij / dTau * t0p);
                     }
                 }
             }
@@ -166,27 +155,34 @@ public class GlobalData {
                 for (int i = 0; i < 2; i++) {
                     for (int j = 0; j < 4; j++) {
                         for (int k = 0; k < 4; k++) {
-                            hLocal[j][i] += alfa * localElement.getGaussIntegrationAreaPoints()[id].node[i][j] * localElement.getGaussIntegrationAreaPoints()[i].node[i][k] * detJ;
+                            localH[j][i] += alfa * localElement.getGaussIntegrationAreaPoints()[id].node[i][j] * localElement.getGaussIntegrationAreaPoints()[i].node[i][k] * detJ;
                         }
-                        pLocal.set(j, pLocal.get(j) + alfa * tempEnvironment * localElement.getGaussIntegrationAreaPoints()[id].node[i][j] * detJ);
+                        localP.set(j, localP.get(j) + alfa * tempEnvironment * localElement.getGaussIntegrationAreaPoints()[id].node[i][j] * detJ);
                     }
                 }
             }
             //agregacja
             for (int i = 0; i < 4; i++) {
                 for (int j = 0; j < 4; j++) {
-                    hGlobal[grid.elements.get(elementNumber).globalNodeID.get(i)][grid.elements.get(elementNumber).globalNodeID.get(j)] += hLocal[i][j];
+                    globalH[grid.elements.get(elementNumber).globalNodeID.get(i)][grid.elements.get(elementNumber).globalNodeID.get(j)] += localH[i][j];
                 }
-                pGlobal.set(grid.elements.get(elementNumber).globalNodeID.get(i), pGlobal.get(grid.elements.get(elementNumber).globalNodeID.get(i)) + pLocal.get(i));
+                globalP.set(grid.elements.get(elementNumber).globalNodeID.get(i), globalP.get(grid.elements.get(elementNumber).globalNodeID.get(i)) + localP.get(i));
             }
         }
     }
 
-    public double getHeight() {
+    public static GlobalData getInstance() throws IOException {
+        if (globalData == null) {
+            globalData = new GlobalData();
+        }
+        return globalData;
+    }
+
+    double getHeight() {
         return height;
     }
 
-    public double getWidth() {
+    double getWidth() {
         return width;
     }
 
@@ -202,59 +198,23 @@ public class GlobalData {
         return nodesNumber;
     }
 
-    public int getElementsNumber() {
-        return elementsNumber;
-    }
-
-    public double getTempStart() {
+    double getTempStart() {
         return tempStart;
-    }
-
-    public double getTau() {
-        return tau;
     }
 
     public double getdTau() {
         return dTau;
     }
 
-    public double getTempEnvironment() {
-        return tempEnvironment;
+    public double getTau() {
+        return tau;
     }
 
-    public double getAlfa() {
-        return alfa;
+    public double[][] getGlobalH() {
+        return globalH;
     }
 
-    public double getC() {
-        return c;
-    }
-
-    public double getLambda() {
-        return lambda;
-    }
-
-    public double getRho() {
-        return rho;
-    }
-
-    public LocalElement getLocalElement() {
-        return localElement;
-    }
-
-    public double[][] gethLocal() {
-        return hLocal;
-    }
-
-    public Vector<Double> getpLocal() {
-        return pLocal;
-    }
-
-    public double[][] gethGlobal() {
-        return hGlobal;
-    }
-
-    public Vector<Double> getpGlobal() {
-        return pGlobal;
+    public Vector<Double> getGlobalP() {
+        return globalP;
     }
 }

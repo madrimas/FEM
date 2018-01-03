@@ -6,7 +6,7 @@ import java.util.Vector;
 
 public class Jacobian {
 
-    public static final LocalElement LOCAL_ELEMENT = LocalElement.getInstance();
+    private static final LocalElement LOCAL_ELEMENT = LocalElement.getInstance();
     private final double J[][];
     private final double invertedJ[][];
     private final double detJ;
@@ -50,10 +50,6 @@ public class Jacobian {
         invertedJ[1][1] = J[0][0];
     }
 
-    public static LocalElement getLocalElement() {
-        return LOCAL_ELEMENT;
-    }
-
     public void showJacobian() {
         System.out.println("Jakobian punktu calkowania id:" + integrationPoint);
         for (int i = 0; i < 2; i++) {
@@ -65,15 +61,11 @@ public class Jacobian {
         System.out.println("Det: " + detJ + "\n");
     }
 
-    public double[][] getJ() {
-        return J;
-    }
-
-    public double[][] getInvertedJ() {
+    double[][] getInvertedJ() {
         return invertedJ;
     }
 
-    public double getDetJ() {
+    double getDetJ() {
         return detJ;
     }
 }

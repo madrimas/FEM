@@ -3,7 +3,7 @@ package fem;
 import java.io.IOException;
 import java.util.Vector;
 
-public class Element {
+class Element {
 
     Vector<Node> nodeVector;//węzły w elemencie
     Vector<Area> areaVector;//powierzchnia elementu
@@ -50,11 +50,11 @@ public class Element {
         }
     }
 
-    public int getAreaContactNumber() {
+    int getAreaContactNumber() {
         return areaContactNumber;
     }
 
-    public Vector<Integer> getLocalPointsNumbers() {
+    Vector<Integer> getLocalPointsNumbers() {
         return localPointsNumbers;
     }
 }

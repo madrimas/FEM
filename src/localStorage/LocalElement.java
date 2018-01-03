@@ -3,12 +3,6 @@ package localStorage;
 public class LocalElement {
 
     private static LocalElement localElement = null;
-    private final LocalNode[] gaussIntegrationPoints = {
-            new LocalNode(-1.0 / Math.sqrt(3.0), -1.0 / Math.sqrt(3.0)),
-            new LocalNode(1.0 / Math.sqrt(3.0), -1.0 / Math.sqrt(3.0)),
-            new LocalNode(1.0 / Math.sqrt(3.0), 1.0 / Math.sqrt(3.0)),
-            new LocalNode(-1.0 / Math.sqrt(3.0), 1.0 / Math.sqrt(3.0))
-    };
     private final LocalArea[] gaussIntegrationAreaPoints = {
             new LocalArea(new LocalNode(-1.0, 1.0 / Math.sqrt(3.0)),
                     new LocalNode(-1.0, -1.0 / Math.sqrt(3.0))),
@@ -27,6 +21,12 @@ public class LocalElement {
 
         //uzupełnienie macierzy funkcjami kształtu
         for (int i = 0; i < 4; i++) {
+            LocalNode[] gaussIntegrationPoints = {
+                    new LocalNode(-1.0 / Math.sqrt(3.0), -1.0 / Math.sqrt(3.0)),
+                    new LocalNode(1.0 / Math.sqrt(3.0), -1.0 / Math.sqrt(3.0)),
+                    new LocalNode(1.0 / Math.sqrt(3.0), 1.0 / Math.sqrt(3.0)),
+                    new LocalNode(-1.0 / Math.sqrt(3.0), 1.0 / Math.sqrt(3.0))
+            };
             matrixN[i][0] = getN1(gaussIntegrationPoints[i].getXi(), gaussIntegrationPoints[i].getEta());
             matrixN[i][1] = getN2(gaussIntegrationPoints[i].getXi(), gaussIntegrationPoints[i].getEta());
             matrixN[i][2] = getN3(gaussIntegrationPoints[i].getXi(), gaussIntegrationPoints[i].getEta());

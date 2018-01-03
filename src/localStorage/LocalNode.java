@@ -1,6 +1,6 @@
 package localStorage;
 
-public class LocalNode {
+class LocalNode {
     private final double xi;
     private final double eta;
 
@@ -9,11 +9,11 @@ public class LocalNode {
         this.eta = eta;
     }
 
-    public double getXi() {
+    double getXi() {
         return xi;
     }
 
-    public double getEta() {
+    double getEta() {
         return eta;
     }
 }

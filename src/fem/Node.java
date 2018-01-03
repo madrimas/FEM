@@ -6,11 +6,10 @@ public class Node {
 
     private final double x, y;
     private final int status;
-    private final GlobalData globalData;
     private double temp;
 
     Node(double x, double y) throws IOException {
-        globalData = GlobalData.getInstance();
+        GlobalData globalData = GlobalData.getInstance();
 
         this.x = x;
         this.y = y;
@@ -23,12 +22,12 @@ public class Node {
         }
     }
 
-    public double getX() {
+    double getX() {
 
         return x;
     }
 
-    public double getY() {
+    double getY() {
         return y;
     }
 
@@ -40,7 +39,7 @@ public class Node {
         this.temp = temp;
     }
 
-    public int getStatus() {
+    int getStatus() {
         return status;
     }
 }

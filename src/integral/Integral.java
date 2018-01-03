@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Integral {
 
-    double integral2P() {
+    public double integral2P() {
         List<Double> weightList = new ArrayList<>();
         weightList.add(1.0);
         weightList.add(1.0);
@@ -25,7 +25,7 @@ public class Integral {
         return result;
     }
 
-    double integral3P() {
+    public double integral3P() {
         List<Double> weightList = new ArrayList<>();
         weightList.add(5.0 / 9.0);
         weightList.add(8.0 / 9.0);

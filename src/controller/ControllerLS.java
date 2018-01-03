@@ -1,9 +1,12 @@
-package linearSystem;
+package controller;
+
+import linearSystem.GaussElimination;
+import linearSystem.JacobiMethod;
 
 import java.util.Scanner;
 import java.util.Vector;
 
-public class Main {
+public class ControllerLS {
     private static double A[][];
     private static Vector<Double> b;
 

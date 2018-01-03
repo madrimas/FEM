@@ -2,7 +2,7 @@ package fem;
 
 import java.util.Vector;
 
-public class Area {
+class Area {
     private final Vector<Node> nodes;
 
     Area(Node firstNode, Node secondNode) {
@@ -11,7 +11,7 @@ public class Area {
         this.nodes.add(secondNode);
     }
 
-    public Vector<Node> getNodes() {
+    Vector<Node> getNodes() {
         return nodes;
     }
 }

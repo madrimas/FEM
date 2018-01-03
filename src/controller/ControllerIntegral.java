@@ -1,6 +1,8 @@
-package integral;
+package controller;
 
-public class Main {
+import integral.Integral;
+
+public class ControllerIntegral {
 
     public static void main(String[] args) {
         Integral integral = new Integral();

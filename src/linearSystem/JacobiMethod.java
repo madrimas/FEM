@@ -3,7 +3,7 @@ package linearSystem;
 import java.util.Vector;
 
 public class JacobiMethod {
-    Vector<Double> jacobiMethod(int size, double[][] matrix, Vector<Double> vector) {
+    public Vector<Double> jacobiMethod(int size, double[][] matrix, Vector<Double> vector) {
         Vector<Double> resultVector = new Vector<>();
         resultVector.setSize(size);
 

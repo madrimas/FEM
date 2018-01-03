@@ -6,9 +6,9 @@ import java.util.Vector;
 public class Grid {
 
     private static Grid grid = null;
-    Vector<Node> nodes;
+    public Vector<Node> nodes;
     Vector<Element> elements;
-    GlobalData globalData;
+    private GlobalData globalData;
 
     private Grid() throws IOException {
         globalData = GlobalData.getInstance();
@@ -38,7 +38,7 @@ public class Grid {
         }
     }
 
-    static Grid getInstance() throws IOException {
+    public static Grid getInstance() throws IOException {
         if (grid == null) {
             grid = new Grid();
         }
