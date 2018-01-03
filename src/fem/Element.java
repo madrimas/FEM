@@ -39,14 +39,12 @@ class Element {
         areaVector.add(new Area(nodeVector.get(2), nodeVector.get(3)));
 
         areaContactNumber = 0;
-        for (int i = 0; i < 4; i++) {
-            if (areaVector.get(i).getNodes().get(0).getStatus() == 1 && areaVector.get(i).getNodes().get(1).getStatus() == 1)
-                areaContactNumber++;
-        }
         localPointsNumbers = new Vector<>();
         for (int i = 0; i < 4; i++) {
-            if (areaVector.get(i).getNodes().get(0).getStatus() == 1 && areaVector.get(i).getNodes().get(1).getStatus() == 1)
+            if (areaVector.get(i).getNodes().get(0).getStatus() == 1 && areaVector.get(i).getNodes().get(1).getStatus() == 1){
+                areaContactNumber++;
                 localPointsNumbers.add(i);
+            }
         }
     }
 

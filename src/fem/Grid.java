@@ -45,13 +45,13 @@ public class Grid {
         return grid;
     }
 
-    public void wypiszND() {
+    public void showNode() {
         for (int i = 0; i < globalData.getNodesNumber(); i++) {
-            System.out.println("i:" + i + "\tStatus:" + nodes.get(i).getStatus() + "\t(" + nodes.get(i).getX() + ";" + nodes.get(i).getY() + ")");
+            System.out.println("i:" + i + "\t\tStatus:" + nodes.get(i).getStatus() + "\t(" + nodes.get(i).getX() + ";" + nodes.get(i).getY() + ")");
         }
     }
 
-    public void wypiszEL(int i) {
+    public void showElement(int i) {
         System.out.println("ELEMENT:" + i);
         for (int j = 0; j < 4; j++) {
             System.out.println("ID" + (j) + "\tglobal ID:" + elements.get(i).globalNodeID.get(j) + "\tStatus:" + elements.get(i).nodeVector.get(j).getStatus() + "\t(" + elements.get(i).nodeVector.get(j).getX() + ";" + elements.get(i).nodeVector.get(j).getY() + ")");

@@ -18,7 +18,7 @@ public class ControllerFEM {
         PrintWriter printWriter = new PrintWriter("data/out.txt");
         int stepNumber = 1;
 
-        for (int tau = 0; tau < globalData.getTau(); tau += globalData.getdTau()) {
+        for (int tau = 0; tau < globalData.getTau(); tau += globalData.getDeltaTau()) {
             globalData.dataCompute();
             tempVector = gaussElimination.gaussElimination(globalData.getNodesNumber(), globalData.getGlobalH(), globalData.getGlobalP());
             for (int i = 0; i < globalData.getNodesNumber(); i++) {
@@ -32,6 +32,7 @@ public class ControllerFEM {
                 for (int j = 0; j < globalData.getHeightNodesNumber(); j++) {
                     //System.out.printf("%.15f\t", grid.nodes.get(counter).getTemp());
                     printWriter.printf("%.15f\t", grid.nodes.get(counter).getTemp());
+                    if(((globalData.getTau()-tau)==globalData.getDeltaTau()) && (counter<globalData.getElementsNumber())) grid.showElement(counter);
                     counter++;
                 }
                 //System.out.println("");
@@ -41,6 +42,7 @@ public class ControllerFEM {
             printWriter.println("");
         }
         printWriter.close();
+        grid.showNode();
         System.out.println("Dane wyjściowe w pliku out.txt");
     }
 }

@@ -19,7 +19,7 @@ public class GlobalData {
     private final double tempStart; //temperatura poczatkowa
     private final double tau; //czas procesu
     private final double tempEnvironment; //temperatura otoczenia
-    private final double alfa; //wspolczynnik wymiany ciepla
+    private final double alpha; //wspolczynnik wymiany ciepla
     private final double c; //cieplo wlasciwe
     private final double lambda; //wspolczynnik przewodzenia ciepla
     private final double rho; //gestosc
@@ -29,7 +29,7 @@ public class GlobalData {
     private final Vector<Double> localP;
     private final double[][] globalH;
     private final Vector<Double> globalP;
-    private double dTau; //poczatkowa wartosc przyrostu czasu
+    private double deltaTau;
 
     private GlobalData() throws IOException {
 
@@ -49,9 +49,9 @@ public class GlobalData {
         this.widthNodesNumber = fileList.get(3).intValue();
         this.tempStart = fileList.get(4);
         this.tau = fileList.get(5);
-        this.dTau = fileList.get(6);
+        this.deltaTau = fileList.get(6);
         this.tempEnvironment = fileList.get(7);
-        this.alfa = fileList.get(8);
+        this.alpha = fileList.get(8);
         this.c = fileList.get(9);
         this.lambda = fileList.get(10);
         this.rho = fileList.get(11);
@@ -124,8 +124,8 @@ public class GlobalData {
                 for (int i = 0; i < 4; i++) {
                     for (int j = 0; j < 4; j++) {
                         cij = c * rho * localElement.getMatrixN()[integrationPoints][i] * localElement.getMatrixN()[integrationPoints][j] * detJ;
-                        localH[i][j] += lambda * (dNdX.get(i) * dNdX.get(j) + dNdY.get(i) * dNdY.get(j)) * detJ + cij / dTau;
-                        localP.set(i, localP.get(i) + cij / dTau * t0p);
+                        localH[i][j] += lambda * (dNdX.get(i) * dNdX.get(j) + dNdY.get(i) * dNdY.get(j)) * detJ + cij / deltaTau;
+                        localP.set(i, localP.get(i) + cij / deltaTau * t0p);
                     }
                 }
             }
@@ -155,9 +155,9 @@ public class GlobalData {
                 for (int i = 0; i < 2; i++) {
                     for (int j = 0; j < 4; j++) {
                         for (int k = 0; k < 4; k++) {
-                            localH[j][i] += alfa * localElement.getGaussIntegrationAreaPoints()[id].node[i][j] * localElement.getGaussIntegrationAreaPoints()[i].node[i][k] * detJ;
+                            localH[j][i] += alpha * localElement.getGaussIntegrationAreaPoints()[id].node[i][j] * localElement.getGaussIntegrationAreaPoints()[i].node[i][k] * detJ;
                         }
-                        localP.set(j, localP.get(j) + alfa * tempEnvironment * localElement.getGaussIntegrationAreaPoints()[id].node[i][j] * detJ);
+                        localP.set(j, localP.get(j) + alpha * tempEnvironment * localElement.getGaussIntegrationAreaPoints()[id].node[i][j] * detJ);
                     }
                 }
             }
@@ -202,8 +202,8 @@ public class GlobalData {
         return tempStart;
     }
 
-    public double getdTau() {
-        return dTau;
+    public double getDeltaTau() {
+        return deltaTau;
     }
 
     public double getTau() {
@@ -216,5 +216,9 @@ public class GlobalData {
 
     public Vector<Double> getGlobalP() {
         return globalP;
+    }
+
+    public int getElementsNumber() {
+        return elementsNumber;
     }
 }
