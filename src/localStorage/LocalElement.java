@@ -3,7 +3,7 @@ package localStorage;
 public class LocalElement {
 
     private static LocalElement localElement = null;
-    private final LocalArea[] gaussIntegrationAreaPoints = {
+    private final LocalArea[] gaussIntegrationAreaPoints = {//lokalne pubkty calkowania dla powierzchni
             new LocalArea(new LocalNode(-1.0, 1.0 / Math.sqrt(3.0)),
                     new LocalNode(-1.0, -1.0 / Math.sqrt(3.0))),
             new LocalArea(new LocalNode(-1.0 / Math.sqrt(3.0), -1.0),
@@ -13,15 +13,15 @@ public class LocalElement {
             new LocalArea(new LocalNode(1.0 / Math.sqrt(3.0), 1.0),
                     new LocalNode(-1.0 / Math.sqrt(3.0), 1.0))
     };
-    private final double dNdXi[][] = new double[4][4];
-    private final double dNdEta[][] = new double[4][4];
-    private final double matrixN[][] = new double[4][4];//macierz funkcji kształtu
+    private final double dNdXi[][] = new double[4][4];//pochoidna fukcji ksztaltu po xi
+    private final double dNdEta[][] = new double[4][4];//po de eta
+    private final double matrixN[][] = new double[4][4];//wartosci fukncji ksztaltu dla objetosci (dla kazdego z 4 puntkow 4 fukncje ksztaltu)
 
     private LocalElement() {
 
         //uzupełnienie macierzy funkcjami kształtu
         for (int i = 0; i < 4; i++) {
-            LocalNode[] gaussIntegrationPoints = {
+            LocalNode[] gaussIntegrationPoints = {//lokalne punkty calkowania
                     new LocalNode(-1.0 / Math.sqrt(3.0), -1.0 / Math.sqrt(3.0)),
                     new LocalNode(1.0 / Math.sqrt(3.0), -1.0 / Math.sqrt(3.0)),
                     new LocalNode(1.0 / Math.sqrt(3.0), 1.0 / Math.sqrt(3.0)),

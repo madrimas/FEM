@@ -2,7 +2,7 @@ package fem;
 
 import java.util.Vector;
 
-class Area {
+class Area {//jedna krawędź w elemencie
     private Vector<Node> nodes;
 
     Area(Node firstNode, Node secondNode) {

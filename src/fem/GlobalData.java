@@ -27,11 +27,11 @@ public class GlobalData {
     private double rho;//gęstość materiału
 
     private LocalElement localElement;//element lokalny
-    private double[][] localH;//macierz lokalna współczynników układu równań H
-    private Vector<Double> localP;//wektor lokalny prawej części układu równań P
+    private double[][] localH;//macierz sztywności obecny  współczynników układu równań H
+    private Vector<Double> localP;//wektor obciążeń obecny(dla konkrentego elementu) prawej części układu równań P
     private double[][] globalH;//macierz globala współczynników układu równań H
     private Vector<Double> globalP;//wektor globalny prawej części układu równań P
-    private double deltaTau;
+    private double deltaTau;//zmiana czasu
 
     private GlobalData() throws IOException {
 
@@ -87,18 +87,18 @@ public class GlobalData {
 
         Grid grid = Grid.getInstance();
         Jacobian jacobian;
-        Vector<Double> dNdX = new Vector<>();
+        Vector<Double> dNdX = new Vector<>();//przechowywanie to czego chcemy obliczyc
         dNdX.setSize(4);
-        Vector<Double> dNdY = new Vector<>();
+        Vector<Double> dNdY = new Vector<>();//przechowywyanie tego co chcemy obliczyc
         dNdY.setSize(4);
-        Vector<Double> x = new Vector<>();
+        Vector<Double> x = new Vector<>();//wspolrzedne wezla z elementu (globalne wartosci)
         x.setSize(4);
-        Vector<Double> y = new Vector<>();
+        Vector<Double> y = new Vector<>();//wspolrzedne wezla z elementu (globalne wartosci)
         y.setSize(4);
-        Vector<Double> temp0 = new Vector<>();
+        Vector<Double> temp0 = new Vector<>();//temperatura poczatkowa ktora sie zmienia przy iternacji
         temp0.setSize(4);
-        double t0p, cij;
-        int id;
+        double t0p, cij;//t0p - temeperatura zinterpolowana do punktu calkowania; cip - macierz C w konkretnej komórce i j
+        int id;//id elementu globalne np 0 5 6 1
         double detJ = 0;
 
         localP.setSize(4);
@@ -112,14 +112,14 @@ public class GlobalData {
                 localP.set(i, 0.0);
             }
 
-            for (int i = 0; i < 4; i++) {
+            for (int i = 0; i < 4; i++) {//wyciagamy dane elementu z elementow w siatce
                 id = grid.elements.get(elementNumber).globalNodeID.get(i);
                 x.set(i, grid.nodes.get(id).getX());
                 y.set(i, grid.nodes.get(id).getY());
                 temp0.set(i, grid.nodes.get(id).getTemp());
             }
 
-            for (int integrationPoints = 0; integrationPoints < 4; integrationPoints++) {//lpc po powierzchni w jednym elemencie
+            for (int integrationPoints = 0; integrationPoints < 4; integrationPoints++) {//lpc po powierzchni w jednym elemencie (sposób 2-punktowy)
                 jacobian = new Jacobian(integrationPoints, x, y);
                 t0p = 0;
 
@@ -130,7 +130,7 @@ public class GlobalData {
                     t0p += temp0.get(i) * localElement.getMatrixN()[integrationPoints][i];
                 }
                 detJ = Math.abs(jacobian.getDetJ());
-                for (int i = 0; i < 4; i++) {
+                for (int i = 0; i < 4; i++) {//bo 4 funkcje kształtu a mnozenie jest ransponowane [N]*[N]^T
                     for (int j = 0; j < 4; j++) {
                         cij = c * rho * localElement.getMatrixN()[integrationPoints][i] * localElement.getMatrixN()[integrationPoints][j] * detJ;
                         localH[i][j] += lambda * (dNdX.get(i) * dNdX.get(j) + dNdY.get(i) * dNdY.get(j)) * detJ + cij / deltaTau;
@@ -141,10 +141,10 @@ public class GlobalData {
 
             //warunki brzegowe
             for (int acn = 0; acn < grid.elements.get(elementNumber).getAreaContactNumber(); acn++) {
-                id = grid.elements.get(elementNumber).getLocalPointsNumbers().get(acn);
-                switch (id) {
+                id = grid.elements.get(elementNumber).getLocalPointsNumbers().get(acn);//id powierzchni lokalnej 0 1 2 3 (numerowanie od lewej)
+                switch (id) {//wyliczanie jaconianu zaleznie od powierzchni
                     case 0:
-                        detJ = Math.sqrt(Math.pow(grid.elements.get(elementNumber).nodeVector.get(3).getX() - grid.elements.get(elementNumber).nodeVector.get(0).getX(), 2)
+                        detJ = Math.sqrt(Math.pow(grid.elements.get(elementNumber).nodeVector.get(3).getX() - grid.elements.get(elementNumber).nodeVector.get(0).getX(), 2)//wyliczenie dlugosci krawedzi
                                 + Math.pow(grid.elements.get(elementNumber).nodeVector.get(3).getY() - grid.elements.get(elementNumber).nodeVector.get(0).getY(), 2)) / 2.0;
                         break;
                     case 1:
@@ -160,17 +160,17 @@ public class GlobalData {
                                 + Math.pow(grid.elements.get(elementNumber).nodeVector.get(2).getY() - grid.elements.get(elementNumber).nodeVector.get(3).getY(), 2)) / 2.0;
                         break;
                 }
-
-                for (int i = 0; i < 2; i++) {
-                    for (int j = 0; j < 4; j++) {
+                //nakladanie warunku brzegowego
+                for (int i = 0; i < 2; i++) {//2 pc na powierzchni
+                    for (int j = 0; j < 4; j++) {//4 bo transponowane
                         for (int k = 0; k < 4; k++) {
-                            localH[j][i] += alpha * localElement.getGaussIntegrationAreaPoints()[id].node[i][j] * localElement.getGaussIntegrationAreaPoints()[i].node[i][k] * detJ;
+                            localH[j][i] += alpha * localElement.getGaussIntegrationAreaPoints()[id].node[i][j] * localElement.getGaussIntegrationAreaPoints()[i].node[i][k] * detJ;//detJ z powierzchni
                         }
                         localP.set(j, localP.get(j) + alpha * tempEnvironment * localElement.getGaussIntegrationAreaPoints()[id].node[i][j] * detJ);
                     }
                 }
             }
-            //agregacja
+            //agregacja (wpisanie do macierzy globalncyh)
             for (int i = 0; i < 4; i++) {
                 for (int j = 0; j < 4; j++) {
                     globalH[grid.elements.get(elementNumber).globalNodeID.get(i)][grid.elements.get(elementNumber).globalNodeID.get(j)] += localH[i][j];

@@ -3,7 +3,7 @@ package localStorage;
 import java.util.Vector;
 
 public class LocalArea {
-    public final double node[][];
+    public final double node[][];//tablica funkcji kształtu
     final Vector<LocalNode> localNode;
 
     LocalArea(LocalNode firstNode, LocalNode secondNode) {
@@ -11,6 +11,6 @@ public class LocalArea {
         localNode.add(firstNode);
         localNode.add(secondNode);
 
-        node = new double[2][4];
+        node = new double[2][4];//2 pubkty całkowania, 4 funkcje ksztaltu
     }
 }
