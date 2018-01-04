@@ -4,7 +4,7 @@
 5	    nB		        liczba węzłów w szerokości
 100	    tempStart		temperatura początkowa [°C]
 3600	tau		        czas procesu [s]
-1	    dTau		    krok czasowy [s]
+0.1	    dTau		    krok czasowy [s]
 1200	tempEnvironment	temperatura otoczenia [°C]
 300	    alfa		    współczynnik wymiany ciepła [W/cm^2]
 700	    c		        ciepło właściwe [J/kg*°C]

@@ -18,7 +18,7 @@ public class ControllerFEM {
         PrintWriter printWriter = new PrintWriter("data/out.txt");
         int stepNumber = 1;
 
-        for (int tau = 0; tau < globalData.getTau(); tau += globalData.getDeltaTau()) {
+        for (double tau = 0; tau < globalData.getTau(); tau += globalData.getDeltaTau()) {
             globalData.dataCompute();
             tempVector = gaussElimination.gaussElimination(globalData.getNodesNumber(), globalData.getGlobalH(), globalData.getGlobalP());
             for (int i = 0; i < globalData.getNodesNumber(); i++) {
