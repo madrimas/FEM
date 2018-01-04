@@ -4,8 +4,8 @@ import java.io.IOException;
 
 public class Node {
 
-    private final double x, y;
-    private final int status;
+    private double x, y;
+    private boolean status;//1-na krawędzi siatki, 0-wewnątrz siatki
     private double temp;
 
     Node(double x, double y) throws IOException {
@@ -16,14 +16,13 @@ public class Node {
         this.temp = globalData.getTempStart();
 
         if (this.x == 0.0 || this.y == 0.0 || this.x == globalData.getWidth() || this.y == globalData.getHeight()) {
-            this.status = 1;
+            this.status = true;
         } else {
-            this.status = 0;
+            this.status = false;
         }
     }
 
     double getX() {
-
         return x;
     }
 
@@ -39,7 +38,7 @@ public class Node {
         this.temp = temp;
     }
 
-    int getStatus() {
+    boolean getStatus() {
         return status;
     }
 }

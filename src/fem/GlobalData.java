@@ -12,23 +12,25 @@ import java.util.Vector;
 public class GlobalData {
 
     private static GlobalData globalData;
-    private final double height, width; //wysokosc, szerokosc
-    private final int heightNodesNumber, widthNodesNumber; //liczba wezlow po wysokosci i po szerokosci
-    private final int nodesNumber; //liczba wezlow
-    private final int elementsNumber; //liczba elementow
-    private final double tempStart; //temperatura poczatkowa
-    private final double tau; //czas procesu
-    private final double tempEnvironment; //temperatura otoczenia
-    private final double alpha; //wspolczynnik wymiany ciepla
-    private final double c; //cieplo wlasciwe
-    private final double lambda; //wspolczynnik przewodzenia ciepla
-    private final double rho; //gestosc
+    private double height; //wysokość siatki
+    private double width; //szerokosc siatki
+    private int heightNodesNumber;//liczba węzłów w siatce w wysokości
+    private int widthNodesNumber;//liczba węzłów w siatce w szerokości
+    private int nodesNumber;//liczba węzłów w siatce
+    private int elementsNumber;//liczba elementów w siatce
+    private double tempStart;//temperatura przy starcie procesu
+    private double tau;//czas trwania całego procesu
+    private double tempEnvironment;//stała temperatura otoczenia
+    private double alpha;//współczynnik wymiany ciepła
+    private double c;//ciepło właściwe
+    private double lambda;//współczynnik przewodzenia ciepła
+    private double rho;//gęstość materiału
 
-    private final LocalElement localElement;
-    private final double[][] localH;
-    private final Vector<Double> localP;
-    private final double[][] globalH;
-    private final Vector<Double> globalP;
+    private LocalElement localElement;//element lokalny
+    private double[][] localH;//macierz lokalna współczynników układu równań H
+    private Vector<Double> localP;//wektor lokalny prawej części układu równań P
+    private double[][] globalH;//macierz globala współczynników układu równań H
+    private Vector<Double> globalP;//wektor globalny prawej części układu równań P
     private double deltaTau;
 
     private GlobalData() throws IOException {
@@ -60,10 +62,10 @@ public class GlobalData {
         elementsNumber = (heightNodesNumber - 1) * (widthNodesNumber - 1);
 
         localElement = LocalElement.getInstance();
-        localH = new double[4][4]; //lokalna macierz współczynników układów równań
-        localP = new Vector<>();//lokalny wektor prawej części układu równań
-        globalH = new double[nodesNumber][nodesNumber];//globalna macierz współczynników układów równań
-        globalP = new Vector<>();//globalny wektor prawej części układu równań
+        localH = new double[4][4];
+        localP = new Vector<>();
+        globalH = new double[nodesNumber][nodesNumber];
+        globalP = new Vector<>();
         globalP.setSize(nodesNumber);
     }
 
@@ -122,8 +124,8 @@ public class GlobalData {
                 t0p = 0;
 
                 for (int i = 0; i < 4; i++) {//nodesNumber w jednym elemencie skonczonym
-                    dNdX.set(i, (1.0 / jacobian.getDetJ() * (jacobian.getInvertedJ()[0][0] * localElement.getdNdXi()[integrationPoints][i] + jacobian.getInvertedJ()[0][1] * localElement.getdNdEta()[integrationPoints][i])));
-                    dNdY.set(i, (1.0 / jacobian.getDetJ() * (jacobian.getInvertedJ()[1][0] * localElement.getdNdXi()[integrationPoints][i] + jacobian.getInvertedJ()[1][1] * localElement.getdNdEta()[integrationPoints][i])));
+                    dNdX.set(i, (1.0 / jacobian.getDetJ() * (jacobian.getInvertedMatrixJ()[0][0] * localElement.getdNdXi()[integrationPoints][i] + jacobian.getInvertedMatrixJ()[0][1] * localElement.getdNdEta()[integrationPoints][i])));
+                    dNdY.set(i, (1.0 / jacobian.getDetJ() * (jacobian.getInvertedMatrixJ()[1][0] * localElement.getdNdXi()[integrationPoints][i] + jacobian.getInvertedMatrixJ()[1][1] * localElement.getdNdEta()[integrationPoints][i])));
 
                     t0p += temp0.get(i) * localElement.getMatrixN()[integrationPoints][i];
                 }

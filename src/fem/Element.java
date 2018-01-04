@@ -6,9 +6,7 @@ import java.util.Vector;
 class Element {
 
     Vector<Node> nodeVector;//węzły w elemencie
-    Vector<Area> areaVector;//powierzchnia elementu
-    Vector<Integer> globalNodeID;
-    GlobalData globalData;
+    Vector<Integer> globalNodeID;//globalne ID węzłów
     private int areaContactNumber;//liczba powierzchni stykowych z otoczeniem
     private Vector<Integer> localPointsNumbers;//lokalne numery powierzchni kontatowych elementu
 
@@ -16,9 +14,9 @@ class Element {
     Element(int x, int y, Vector<Node> nodes) throws IOException {
 
         nodeVector = new Vector<>();
-        areaVector = new Vector<>();
+        Vector<Area> areaVector = new Vector<>();//powierzchnia elementu
         globalNodeID = new Vector<>();
-        globalData = GlobalData.getInstance();
+        GlobalData globalData = GlobalData.getInstance();
 
         //przypisanie współrzędnych węzłów w elemencie
         nodeVector.add(nodes.get(0));
@@ -41,7 +39,7 @@ class Element {
         areaContactNumber = 0;
         localPointsNumbers = new Vector<>();
         for (int i = 0; i < 4; i++) {
-            if (areaVector.get(i).getNodes().get(0).getStatus() == 1 && areaVector.get(i).getNodes().get(1).getStatus() == 1) {
+            if (areaVector.get(i).getNodes().get(0).getStatus() && areaVector.get(i).getNodes().get(1).getStatus()) {
                 areaContactNumber++;
                 localPointsNumbers.add(i);
             }

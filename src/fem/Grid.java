@@ -6,8 +6,8 @@ import java.util.Vector;
 public class Grid {
 
     private static Grid grid = null;
-    public Vector<Node> nodes;
-    Vector<Element> elements;
+    public Vector<Node> nodes;//wektor węzłów w siatce
+    Vector<Element> elements;//wektor elementów w siatce
     private GlobalData globalData;
 
     private Grid() throws IOException {
@@ -15,6 +15,7 @@ public class Grid {
         nodes = new Vector<>();
         elements = new Vector<>();
 
+        //wyliczenie zmiany wysokości i szerekości w zależności od ilości węzłów
         double dWidth = globalData.getWidth() / (globalData.getWidthNodesNumber() - 1);
         double dHeight = globalData.getHeight() / (globalData.getHeightNodesNumber() - 1);
 
@@ -46,14 +47,16 @@ public class Grid {
 
     public void showNode() {
         for (int i = 0; i < globalData.getNodesNumber(); i++) {
-            System.out.println("i:" + i + "\t\tStatus:" + nodes.get(i).getStatus() + "\t(" + nodes.get(i).getX() + ";" + nodes.get(i).getY() + ")");
+            int status = nodes.get(i).getStatus() ? 1 : 0;
+            System.out.println("i:" + i + "\t\tStatus:" + status + "\t(" + nodes.get(i).getX() + ";" + nodes.get(i).getY() + ")");
         }
     }
 
-    public void showElement(int i) {
-        System.out.println("ELEMENT:" + i);
+    public void showElement(int elementNumber) {
+        System.out.println("ELEMENT:" + elementNumber);
         for (int j = 0; j < 4; j++) {
-            System.out.println("ID" + (j) + "\tglobal ID:" + elements.get(i).globalNodeID.get(j) + "\tStatus:" + elements.get(i).nodeVector.get(j).getStatus() + "\t(" + elements.get(i).nodeVector.get(j).getX() + ";" + elements.get(i).nodeVector.get(j).getY() + ")");
+            int status = nodes.get(elementNumber).getStatus() ? 1 : 0;
+            System.out.println("ID" + (j) + "\tglobal ID:" + elements.get(elementNumber).globalNodeID.get(j) + "\tStatus:" + status + "\t(" + elements.get(elementNumber).nodeVector.get(j).getX() + ";" + elements.get(elementNumber).nodeVector.get(j).getY() + ")");
         }
     }
 }

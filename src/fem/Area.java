@@ -3,7 +3,7 @@ package fem;
 import java.util.Vector;
 
 class Area {
-    private final Vector<Node> nodes;
+    private Vector<Node> nodes;
 
     Area(Node firstNode, Node secondNode) {
         nodes = new Vector<>();
