@@ -7,8 +7,8 @@ class Element {
 
     Vector<Node> nodeVector;//węzły w elemencie (4)
     Vector<Integer> globalNodeID;//globalne ID węzłów
-    private int areaContactNumber;//liczba powierzchni stykowych z otoczeniem (0-4) na nie naklada warunki brzegowe
-    private Vector<Integer> localPointsNumbers;//lokalne numery powierzchni kontatowych elementu (od lewej)
+    private int areaContactNumber;//liczba powierzchni stykowych z otoczeniem (0-4) na nie naklada sie warunki brzegowe
+    private Vector<Integer> localAreaNumbers;//lokalne numery powierzchni kontatowych elementu (od lewej)
 
     //dh - wysokość, dw - szerokość -- jednego elementu
     Element(int i, int j, Vector<Node> nodes) throws IOException {
@@ -37,11 +37,11 @@ class Element {
         areaVector.add(new Area(nodeVector.get(2), nodeVector.get(3)));
 
         areaContactNumber = 0;
-        localPointsNumbers = new Vector<>();
+        localAreaNumbers = new Vector<>();
         for (int k = 0; k < 4; k++) {
             if (areaVector.get(k).getNodes().get(0).getStatus() && areaVector.get(k).getNodes().get(1).getStatus()) {
                 areaContactNumber++;
-                localPointsNumbers.add(k);
+                localAreaNumbers.add(k);
             }
         }
     }
@@ -50,7 +50,7 @@ class Element {
         return areaContactNumber;
     }
 
-    Vector<Integer> getLocalPointsNumbers() {
-        return localPointsNumbers;
+    Vector<Integer> getLocalAreaNumbers() {
+        return localAreaNumbers;
     }
 }

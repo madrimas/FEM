@@ -32,7 +32,7 @@ public class ControllerFEM {
                 for (int j = 0; j < globalData.getHeightNodesNumber(); j++) {
                     //System.out.printf("%.15f\t", grid.nodes.get(counter).getTemp());
                     printWriter.printf("%.15f\t", grid.nodes.get(counter).getTemp());
-                    if(((globalData.getTau()-tau)==globalData.getDeltaTau()) && (counter<globalData.getElementsNumber())) grid.showElement(counter);
+                    //if(((globalData.getTau()-tau)==globalData.getDeltaTau()) && (counter<globalData.getElementsNumber())) grid.showElement(counter);//do testów
                     counter++;
                 }
                 //System.out.println("");
@@ -42,7 +42,7 @@ public class ControllerFEM {
             printWriter.println("");
         }
         printWriter.close();
-        grid.showNode();
+        //grid.showNode();//do testów
         System.out.println("Dane wyjściowe w pliku out.txt");
     }
 }

@@ -27,9 +27,9 @@ public class GlobalData {
     private double rho;//gęstość materiału
 
     private LocalElement localElement;//element lokalny
-    private double[][] localH;//macierz sztywności obecny  współczynników układu równań H
+    private double[][] localH;//macierz sztywności obecna(dla konkretnego elementu) współczynników układu równań H
     private Vector<Double> localP;//wektor obciążeń obecny(dla konkrentego elementu) prawej części układu równań P
-    private double[][] globalH;//macierz globala współczynników układu równań H
+    private double[][] globalH;//macierz globalna współczynników układu równań H
     private Vector<Double> globalP;//wektor globalny prawej części układu równań P
     private double deltaTau;//zmiana czasu
 
@@ -64,6 +64,7 @@ public class GlobalData {
         localElement = LocalElement.getInstance();
         localH = new double[4][4];
         localP = new Vector<>();
+        localP.setSize(4);
         globalH = new double[nodesNumber][nodesNumber];
         globalP = new Vector<>();
         globalP.setSize(nodesNumber);
@@ -85,6 +86,11 @@ public class GlobalData {
             globalP.set(i, 0.0);
         }
 
+        double interpolatedTemp0;//temeperatura początkowa z węzłów zinterpolowana do konkrentego punktu calkowania
+        double ijElementFromMatrixC;//element i j abstrakcyjnej macierzy C
+        int id;//id elementu globalne np 0 5 6 1, następnie id powierzchni
+        double detJ = 0;
+
         Grid grid = Grid.getInstance();
         Jacobian jacobian;
         Vector<Double> dNdX = new Vector<>();//przechowywanie to czego chcemy obliczyc
@@ -97,11 +103,7 @@ public class GlobalData {
         y.setSize(4);
         Vector<Double> temp0 = new Vector<>();//temperatura poczatkowa ktora sie zmienia przy iternacji
         temp0.setSize(4);
-        double t0p, cij;//t0p - temeperatura zinterpolowana do punktu calkowania; cip - macierz C w konkretnej komórce i j
-        int id;//id elementu globalne np 0 5 6 1
-        double detJ = 0;
 
-        localP.setSize(4);
 
         for (int elementNumber = 0; elementNumber < elementsNumber; elementNumber++) {
 
@@ -121,27 +123,28 @@ public class GlobalData {
 
             for (int integrationPoints = 0; integrationPoints < 4; integrationPoints++) {//lpc po powierzchni w jednym elemencie (sposób 2-punktowy)
                 jacobian = new Jacobian(integrationPoints, x, y);
-                t0p = 0;
+                //jacobian.showJacobian();//do testów
+                interpolatedTemp0 = 0;
 
                 for (int i = 0; i < 4; i++) {//nodesNumber w jednym elemencie skonczonym
                     dNdX.set(i, (1.0 / jacobian.getDetJ() * (jacobian.getInvertedMatrixJ()[0][0] * localElement.getdNdXi()[integrationPoints][i] + jacobian.getInvertedMatrixJ()[0][1] * localElement.getdNdEta()[integrationPoints][i])));
                     dNdY.set(i, (1.0 / jacobian.getDetJ() * (jacobian.getInvertedMatrixJ()[1][0] * localElement.getdNdXi()[integrationPoints][i] + jacobian.getInvertedMatrixJ()[1][1] * localElement.getdNdEta()[integrationPoints][i])));
 
-                    t0p += temp0.get(i) * localElement.getMatrixN()[integrationPoints][i];
+                    interpolatedTemp0 += temp0.get(i) * localElement.getMatrixN()[integrationPoints][i];
                 }
                 detJ = Math.abs(jacobian.getDetJ());
                 for (int i = 0; i < 4; i++) {//bo 4 funkcje kształtu a mnozenie jest ransponowane [N]*[N]^T
                     for (int j = 0; j < 4; j++) {
-                        cij = c * rho * localElement.getMatrixN()[integrationPoints][i] * localElement.getMatrixN()[integrationPoints][j] * detJ;
-                        localH[i][j] += lambda * (dNdX.get(i) * dNdX.get(j) + dNdY.get(i) * dNdY.get(j)) * detJ + cij / deltaTau;
-                        localP.set(i, localP.get(i) + cij / deltaTau * t0p);
+                        ijElementFromMatrixC = c * rho * localElement.getMatrixN()[integrationPoints][i] * localElement.getMatrixN()[integrationPoints][j] * detJ;
+                        localH[i][j] += lambda * (dNdX.get(i) * dNdX.get(j) + dNdY.get(i) * dNdY.get(j)) * detJ + ijElementFromMatrixC / deltaTau;
+                        localP.set(i, localP.get(i) + ijElementFromMatrixC / deltaTau * interpolatedTemp0);
                     }
                 }
             }
 
             //warunki brzegowe
             for (int acn = 0; acn < grid.elements.get(elementNumber).getAreaContactNumber(); acn++) {
-                id = grid.elements.get(elementNumber).getLocalPointsNumbers().get(acn);//id powierzchni lokalnej 0 1 2 3 (numerowanie od lewej)
+                id = grid.elements.get(elementNumber).getLocalAreaNumbers().get(acn);//id powierzchni lokalnej 0 1 2 3 (numerowanie od lewej)
                 switch (id) {//wyliczanie jaconianu zaleznie od powierzchni
                     case 0:
                         detJ = Math.sqrt(Math.pow(grid.elements.get(elementNumber).nodeVector.get(3).getX() - grid.elements.get(elementNumber).nodeVector.get(0).getX(), 2)//wyliczenie dlugosci krawedzi
